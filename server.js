@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const {
     get_articles,
@@ -15,6 +16,7 @@ const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
+app.use(cors()) // Enable cors
 
 app.get('/articles', authenticateToken, get_articles);
 app.get('/articles/add', authenticateToken, add_article);
